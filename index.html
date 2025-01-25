@@ -28,7 +28,7 @@
                 </div>
         </form>
         </div>
-        <div class="container response-container darker" id="response">
+        <div class="container response-container darker" id="response" style="display: none;">
             <h3>Subject: w90r2f</h3>
             <p class="response-text">email text</p>
         </div>
@@ -58,8 +58,11 @@
                     })
                 });
 
+                // display the generated email
+                responseDiv.style.display = 'block';
+                responseDiv.querySelector('.response-text').innerText = "Generating..."
                 const data = await response.json();
-                responseDiv.innerText = data.response;
+                responseDiv.querySelector('.response-text').innerText = data.response;
             });
         </script>
     </body>

@@ -1,9 +1,10 @@
 from openai import OpenAI
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 # Flask Application
 app = Flask(__name__)
-
+CORS(app)
 # OpenAI Client
 client = OpenAI()
 
@@ -23,7 +24,7 @@ def chat():
     target = data.get('target')
     additional = data.get('additional')
     
-    if content and from_who and to_who and style and target and additional:
+    if content:
         messages.append({"role": "user", "content": f"Content: {content}"})
         messages.append({"role": "user", "content": f"From: {from_who}"})
         messages.append({"role": "user", "content": f"To: {to_who}"})
