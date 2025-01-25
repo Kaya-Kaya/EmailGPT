@@ -28,8 +28,8 @@
                 </div>
         </form>
         </div>
-        <div class="container response-container darker" id="response" style="display: none;">
-            <h3>Subject: w90r2f</h3>
+        <div class="container response-container darker" id="response" style = "display: none;">
+            <h3 class="subject-class">Subject: w90r2f</h3>
             <p class="response-text">email text</p>
         </div>
         <script>
@@ -43,6 +43,9 @@
                 const additional = document.getElementById("additional").value;
                 const responseDiv = document.getElementById("response");
                 
+                responseDiv.style.display = 'block';
+                responseDiv.querySelector('.response-text').innerText = "Generating...";
+
                 const response = await fetch('http://127.0.0.1:5000/chat', {
                     method: 'POST',
                     headers: {
@@ -59,10 +62,9 @@
                 });
 
                 // display the generated email
-                responseDiv.style.display = 'block';
-                responseDiv.querySelector('.response-text').innerText = "Generating..."
                 const data = await response.json();
-                responseDiv.querySelector('.response-text').innerText = data.response;
+                responseDiv.querySelector('.subject-class').innerText = data.response["subject"];
+                responseDiv.querySelector('.response-text').innerText = data.response["body"];
             });
         </script>
     </body>
