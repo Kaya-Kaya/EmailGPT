@@ -29,8 +29,8 @@
         </form>
         </div>
         <div class="container response-container darker" id="response" style = "display: none;">
-            <h3 class="subject-class">Subject: w90r2f</h3>
-            <p class="response-text">email text</p>
+            <h3 class="subject-class"></h3>
+            <p class="response-text"></p>
         </div>
         <script>
             document.getElementById('generate-form').addEventListener('submit', async function(event) {
@@ -42,7 +42,7 @@
                 const target = document.getElementById("target").value;
                 const additional = document.getElementById("additional").value;
                 const responseDiv = document.getElementById("response");
-                
+                responseDiv.querySelector('.subject-class').innerText = "";
                 responseDiv.style.display = 'block';
                 responseDiv.querySelector('.response-text').innerText = "Generating...";
 
