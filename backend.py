@@ -19,7 +19,6 @@ Additional Instructions:\n{user_msg['additional'] if user_msg['additional'] is n
 # This funtion describes the ChatGPT chat
 @app.route('/chat', methods=['POST'])
 def chat():
-    print("sometnoing")
     data = request.json
     if data:
         formatted = format(data)
@@ -29,7 +28,6 @@ def chat():
         valid = False
 
         while(not valid):
-            print(response)
             if "<subject>" in response:
                 subject = response.split("<subject>")[1]
                 if "</subject>" in subject:
@@ -44,7 +42,6 @@ def chat():
         valid = False
 
         while(not valid):
-            print(response)
             if "<body>" in response:
                 body = response.split("<body>")[1]
                 if "</body>" in body:
