@@ -36,10 +36,10 @@ def chat():
                     subject = subject.split("</subject>")[0]
                     valid = True
             if not valid:
-                ai.message("You must write a subject and enclose it in <subject> and </subject>")
+                ai.message("user", "You must write a subject and enclose it in <subject> and </subject>")
                 response = ai.respond(formatted)
 
-        ai.message("Please write a body for this email and enclose it in <body> and </body>.")
+        ai.message("user", "Please write a body for this email and enclose it in <body> and </body>.")
         response = ai.respond(formatted)
         valid = False
 
@@ -51,7 +51,7 @@ def chat():
                     body = body.split("</body>")[0]
                     valid = True
             if not valid:
-                ai.message("You must write the body of the email and enclose it in <body> and </body>")
+                ai.message("user", "You must write the body of the email and enclose it in <body> and </body>")
                 response = ai.respond(formatted) 
 
         return jsonify({"response": {"subject": subject, "body": body}})
