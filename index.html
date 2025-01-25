@@ -22,7 +22,7 @@
                 <br>
                 <input class="additional-input" type="text" id="additional" placeholder="Additional instructions (optional)">
                 <div class="btn-group">
-                    <button>Generate</button>
+                    <button type='submit'>Generate</button>
                 </div>
         </form>
         </div>
@@ -41,7 +41,7 @@
                 const additional = document.getElementById("additional").value;
                 const responseDiv = document.getElementById("response");
                 
-                const response = await fetch('/chat', {
+                const response = await fetch('http://127.0.0.1:5000/chat', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
