@@ -8,5 +8,8 @@ Created during Purdue Hack Night 5.14.
 - Navigate to the folder
 - Run ```pip install -r requirements.txt```
 
+> [!IMPORTANT]
+> The ```OPENAI_API_KEY``` environment variable must be set to your API key.
+
 ## Usage
 Run ```python -m emailgpt```
