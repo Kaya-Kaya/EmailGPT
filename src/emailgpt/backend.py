@@ -1,11 +1,9 @@
 from flask import Flask, render_template, request, jsonify
-from emailgpt.llm import ChatGPT
-from flask_cors import CORS
+from llm import ChatGPT
 import webbrowser
 
 # Flask Application
 app = Flask("AI Email Generator")
-CORS(app)
 ai = ChatGPT()
 
 def format(user_msg):
