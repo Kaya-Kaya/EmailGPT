@@ -2,11 +2,11 @@ from flask import Flask, render_template, request, jsonify
 from .llm import ChatGPT
 import webbrowser
 
-# Flask Application
 app = Flask("AI Email Generator")
 ai = ChatGPT()
 
 def format(user_msg):
+    '''Format the user message.'''
     return f"""
 Content:\n{user_msg['content']}\n\n
 Sender:\n{user_msg['from'] if user_msg['from'] is not None else "Use a placeholder"}\n\n
@@ -16,13 +16,14 @@ Target Audience:\n{user_msg['target'] if user_msg['target'] is not None else "No
 Additional Instructions:\n{user_msg['additional'] if user_msg['additional'] is not None else "None"}
 """
 
+# Route for the home page
 @app.route('/')
 def home():
     return render_template('index.html')
 
-# This funtion describes the ChatGPT chat
+# Route to generate email content
 @app.route('/generate', methods=['POST'])
-def chat():
+def generate():
     data = request.json
     if data:
         formatted = format(data)
@@ -31,7 +32,8 @@ def chat():
         response = ai.respond(formatted)
         valid = False
 
-        while(not valid):
+        # Loop until a valid subject is generated
+        while not valid:
             if "<subject>" in response:
                 subject = response.split("<subject>")[1]
                 if "</subject>" in subject:
@@ -45,7 +47,8 @@ def chat():
         response = ai.respond(formatted)
         valid = False
 
-        while(not valid):
+        # Loop until a valid body is generated
+        while not valid:
             if "<body>" in response:
                 body = response.split("<body>")[1]
                 if "</body>" in body:
