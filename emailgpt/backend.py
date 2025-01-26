@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from llm import ChatGPT
+from .llm import ChatGPT
 import webbrowser
 
 # Flask Application

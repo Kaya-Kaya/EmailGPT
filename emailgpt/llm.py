@@ -6,7 +6,7 @@ class LLM(ABC):
         self.token = token
         self.model = model
         self.temperature = temperature
-        with open("src/emailgpt/prompt.txt", "r") as file:
+        with open("emailgpt/prompt.txt", "r") as file:
             self.prompt = file.read()
 
     @abstractmethod
