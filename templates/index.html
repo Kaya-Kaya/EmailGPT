@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="style.css">
-        <title>AI Email Writer</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <title>EmailGPT</title>
     </head>
     <body>
         <div class="container darker">
-            <h1>AI Email Writer</h1>
+            <h1>EmailGPT</h1>
         </div>
         <div class="container">
             <h2>Content</h2>
@@ -42,7 +42,7 @@
                 responseDiv.style.display = 'block';
                 responseDiv.querySelector('.response-text').innerText = "Generating...";
 
-                const response = await fetch('http://127.0.0.1:5000/generate', {
+                const response = await fetch('/generate', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

@@ -1,8 +1,10 @@
-from flask import Flask, request, jsonify
-from llm import ChatGPT
+from flask import Flask, render_template, request, jsonify
+from emailgpt.llm import ChatGPT
 from flask_cors import CORS
+import webbrowser
+
 # Flask Application
-app = Flask(__name__)
+app = Flask("AI Email Generator")
 CORS(app)
 ai = ChatGPT()
 
@@ -15,6 +17,10 @@ Tone:\n{user_msg['style'] if user_msg['style'] is not None else "Not specified"}
 Target Audience:\n{user_msg['target'] if user_msg['target'] is not None else "Not specified"}\n\n
 Additional Instructions:\n{user_msg['additional'] if user_msg['additional'] is not None else "None"}
 """
+
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 # This funtion describes the ChatGPT chat
 @app.route('/generate', methods=['POST'])
@@ -55,5 +61,10 @@ def chat():
     
     return jsonify({"response": "No message received"})
 
-if __name__ == '__main__':
+def run():
+    # Open the HTML file in the default web browser
+    webbrowser.open('http://127.0.0.1:5000')
     app.run()
+
+if __name__ == '__main__':
+    run()
