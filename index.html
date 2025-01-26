@@ -2,7 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="style.css">
-        <title>Test</title>
+        <title>AI Email Writer</title>
     </head>
     <body>
         <div class="container darker">
@@ -11,17 +11,12 @@
         <div class="container">
             <h2>Content</h2>
             <form id="generate-form">
-                <input class="content-input" type="text" id="content" placeholder="What things should the email include?">
-                <br>
-                <input class="from-input" type="text" id="from-who" placeholder="Who is sending this email? (optional)">
-                <br>
-                <input class="to-input" type="text" id="to-who" placeholder="Who is the email to? (optional)">
-                <br>
+                <textarea class="content-input" id="content" placeholder="What things should the email include?"></textarea><br>
+                <input class="from-input" type="text" id="from-who" placeholder="Who is sending this email? (optional)"><br>
+                <input class="to-input" type="text" id="to-who" placeholder="Who is the email to? (optional)"><br>
                 <h2>Style</h2>
-                <input class="style-input" type="text" id="style" placeholder="List of adjectives describing the tone of the email (e.g. formal, apologetic, etc.) (optional)">
-                <br>
-                <input class="from-input" type="text" id="target" placeholder="Description of the target audience (e.g. boss, colleague, friend, etc.) (optional)">
-                <br>
+                <input class="style-input" type="text" id="style" placeholder="List of adjectives describing the tone of the email (e.g. formal, apologetic, etc.) (optional)"><br>
+                <input class="from-input" type="text" id="target" placeholder="Description of the target audience (e.g. boss, colleague, friend, etc.) (optional)"><br>
                 <input class="additional-input" type="text" id="additional" placeholder="Additional instructions (optional)">
                 <div class="btn-group">
                     <button type='submit'>Generate</button>
@@ -35,18 +30,19 @@
         <script>
             document.getElementById('generate-form').addEventListener('submit', async function(event) {
                 event.preventDefault();
-                const content = document.getElementById("content").value;
-                const from = document.getElementById("from-who").value;
-                const to = document.getElementById("to-who").value;
-                const style = document.getElementById("style").value;
-                const target = document.getElementById("target").value;
-                const additional = document.getElementById("additional").value;
+                const content = document.getElementById("content").value.trim();
+                if (!content) return;
+                const from = document.getElementById("from-who").value.trim();
+                const to = document.getElementById("to-who").value.trim();
+                const style = document.getElementById("style").value.trim();
+                const target = document.getElementById("target").value.trim();
+                const additional = document.getElementById("additional").value.trim();
                 const responseDiv = document.getElementById("response");
                 responseDiv.querySelector('.subject-class').innerText = "";
                 responseDiv.style.display = 'block';
                 responseDiv.querySelector('.response-text').innerText = "Generating...";
 
-                const response = await fetch('http://127.0.0.1:5000/chat', {
+                const response = await fetch('http://127.0.0.1:5000/generate', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

@@ -11,6 +11,18 @@ h2 {
     margin-bottom: 5px;
 }
 
+textarea {
+    background-color: #1e1e1e;
+    border: 2px solid #1e1e1e;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 10px;
+    width: 80%;
+    margin: auto;
+    display: block;
+    resize: vertical;
+}
+
 input {
     background-color: #1e1e1e;
     border: 2px solid #1e1e1e;
